@@ -17,7 +17,7 @@ class RecipeGenerator:
 
         # load poetry
 
-        with open("poetry_corpus_a.txt") as f:
+        with open("poetry_corpus.txt") as f:
             poetry = f.read()
         self.poem_model = markovify.Text(poetry, state_size=2)
 
@@ -26,7 +26,7 @@ class RecipeGenerator:
         with open("instr_corpus.txt") as f:
             text = f.read()
         self.raw_text_model = markovify.Text(text)
-
+        
         # combined recipe/poetry model
         self.text_model = markovify.combine([self.poem_model, self.raw_text_model], (1, 1.5))
 
