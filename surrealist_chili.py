@@ -26,7 +26,7 @@ class RecipeGenerator:
         with open("instr_corpus.txt") as f:
             text = f.read()
         self.raw_text_model = markovify.Text(text)
-        
+
         # combined recipe/poetry model
         self.text_model = markovify.combine([self.poem_model, self.raw_text_model], (1, 1.5))
 
@@ -39,7 +39,7 @@ class RecipeGenerator:
         # build a set to avoid duplicates
         s = set()
         for i in range(20):
-            s.add(self.ingr_model.make_short_sentence(200,test_output=False))
+            s.add(self.ingr_model.make_sentence(test_output=False))
         return sample(s, randint(5,14))
 
     def instructions(self):
